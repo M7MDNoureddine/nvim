@@ -4,7 +4,7 @@ require('mason-lspconfig').setup({
     'omnisharp',   -- C#
     'cssls',       -- CSS
     'html',        -- HTML
-    'tsserver',    -- JavaScript/TypeScript
+    'ts_ls',    -- JavaScript/TypeScript
     'clangd',      -- C++
     'pyright',     -- Python
     'lua_ls',      -- Lua

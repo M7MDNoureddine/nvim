@@ -25,7 +25,20 @@ lsp_zero.extend_lspconfig({
 capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- These are just examples. Replace them with the language
+-- Add Angular language server (angularls) with template support
+require('lspconfig').angularls.setup({
+    capabilities = capabilities,
+    on_attach = lsp_attach,
+    filetypes = { 'typescript', 'typescriptreact', 'html' }, -- Ensure Angular recognizes both
+    settings = {
+        angular = {
+            experimental = {
+                templateInterpolationService = true,
+            },
+        },
+    },
+})
+--hese are just examples. Replace them with the language
 -- servers you have installed in your system
 require('lspconfig').csharp_ls.setup({
     capabilities = capabilities,
@@ -58,7 +71,6 @@ require('lspconfig').yamlls.setup({
     capabilities = capabilities,
 })
 
-
 -- Autocompletion setup
 ---
 local cmp = require('cmp')
@@ -74,8 +86,8 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-
         ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ["<C-Space>"] = cmp.mapping.complete()
+        ["<C-Space>"] = cmp.mapping.complete(),
     })
 })
+
